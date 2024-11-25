@@ -22,7 +22,7 @@ class Mashina(models.Model):
     def __str__(self):
         return f"{self.nomi} ({self.raqam})"
     
-    def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
-        if not 1800 <= int(self.ishlab_chiqarilgan_yili) <= datetime.now().year:
-            raise ValidationError({"detail":'Berilgan yil xato'})
-        return super().save(force_insert, force_update, using, update_fields)
+    # def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
+    #     if not 1800 <= int(self.ishlab_chiqarilgan_yili) <= datetime.now().year:
+    #         raise ValidationError({"detail":'Berilgan yil xato'})
+    #     return super().save(force_insert, force_update, using, update_fields)

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+{%load static%}
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haydovchi Ma'lumotlarini Qidirish</title>
+    
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="search-card">
+            <h1>Haydovchi Ma'lumotlarini Qidirish</h1>
+            <form id="searchForm" method="get">
+                <div class="input-wrapper">
+                    <input 
+                        name="query" 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Haydovchi ismi, familiyasi yoki JSHSHIR..." 
+                        autocomplete="off"
+                        {% if query %}
+                        value="{{ query }}"
+                        {% endif %}>
+                    <ul id="suggestions" class="suggestions"></ul>
+                </div>                
+                <button type="submit" id="searchButton">
+                    <span class="button-text">Qidirish</span>
+                    <span class="loader"></span>
+                </button>
+            </form>
+        </div>
+        <div id="results" class="results-card">
+            {% if haydovchilar %}
+                {% for haydovchi in haydovchilar %}
+                    <a href="/result/{{haydovchi.id}}">{{haydovchi.ism}} {{ haydovchi.familiya }}</p>
+                {% endfor %}
+            {% elif haydovchi %}
+                <a href="/result/{{haydovchi.id}}">{{haydovchi.ism}} {{ haydovchi.familiya }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'new.js' %}"></script>
+</body>
+</html>
+

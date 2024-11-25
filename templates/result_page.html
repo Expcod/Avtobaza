@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haydovchi va Mashinalar Ma'lumoti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+        .car-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .car-item {
+            background-color: #ecf0f1;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .car-item:hover {
+            transform: translateY(-5px);
+        }
+        .car-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .car-info span {
+            flex-basis: 48%;
+            margin-bottom: 10px;
+        }
+        .car-info strong {
+            color: #2980b9;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .car-info span {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ haydovchi.ism }} {{ haydovchi.familiya }}</h1>
+        <h2>Haydovchining mashinalari:</h2>
+        <ul class="car-list">
+            {% for mashina in mashinalar %}
+                <li class="car-item">
+                    <div class="car-info">
+                        <span><strong>Raqam:</strong> {{ mashina.raqam }}</span>
+                        <span><strong>Nomi:</strong> {{ mashina.nomi }}</span>
+                        <span><strong>Rangi:</strong> {{ mashina.rangi }}</span>
+                        <span><strong>Ishlab chiqarilgan yili:</strong> {{ mashina.ishlab_chiqarilgan_yili }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="back-button">Orqaga qaytish</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carItems = document.querySelectorAll('.car-item');
+            carItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.backgroundColor = this.style.backgroundColor === 'rgb(189, 195, 199)' ? '#ecf0f1' : '#bdc3c7';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

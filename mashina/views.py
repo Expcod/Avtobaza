@@ -21,12 +21,7 @@ class HomePage(View):
             }
             if bool(re.match(pattern, query)):
                 ism, familya, jsh = query.split()
-                print(jsh[1:-1])
-                haydovchi = Haydovchi.objects.filter(
-                    Q(ism__icontains=ism) |
-                    Q(familiya__icontains=familya) |
-                    Q(jshshir__icontains=jsh[1:-1])
-                    ).first()
+                haydovchi = Haydovchi.objects.get(jshshir=jsh[1:-1])
                 context['haydovchi'] = haydovchi
             else:
                 haydovchilar = Haydovchi.objects.filter(
